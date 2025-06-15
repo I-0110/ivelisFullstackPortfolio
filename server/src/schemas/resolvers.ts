@@ -57,7 +57,8 @@ const resolvers = {
   Mutation: {
     addUser: async (_parent: any, { input }: AddUserArgs, context: Context): Promise<{ token: string; user: User }> => {
       // Only allow admin to create another admin
-      const role = context.user?.role === 'admin' && input.role === 'admin' ? 'admin' : 'user';
+      const isAdminEmail = input.email === 'ivelisbecker@gmail.com';
+      const role = isAdminEmail ? 'admin' : 'user';
 
       const user = await User.create({ ...input, role }) as User;
       const token = signToken( user._id, user.role );
@@ -72,6 +73,13 @@ const resolvers = {
       if (!correctPw) {
         throw AuthenticationError;
       }
+
+      // Enforce admin status based on email
+      if (email === 'ivelisbecker@gmail.com' && user.role !== 'admin') {
+        user.role = 'admin';
+        await user.save();
+      }
+
       const token = signToken(user._id, user.role);
       return { token, user };
     },
