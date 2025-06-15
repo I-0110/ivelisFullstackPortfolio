@@ -1,0 +1,52 @@
+import { Link } from 'react-router-dom';
+
+interface User {
+  _id: string;
+  name: string;
+  projects: string[]; // Assuming projects are represented as an array of strings
+}
+
+interface UserListProps {
+  users: User[];
+  title: string;
+}
+
+const UserList: React.FC<UserListProps> = ({ users, title }) => {
+  if (!users || !users.length) {
+    return <h3>No Users Yet</h3>;
+  }
+
+  return (
+    <div>
+      <h3 className="text-primary">{title}</h3>
+      <div className="flex-row justify-space-between my-4">
+        {users &&
+          users.map((user) => (
+            <div key={user._id} className="col-12 col-xl-6">
+              <div className="card mb-3">
+                <h4 className="card-header bg-dark text-light p-2 m-0">
+                  {user.name} <br />
+                  <span className="text-white" style={{ fontSize: '1rem' }}>
+                    currently has {user.projects?.length ?? 0}{' '}
+                    endorsed project
+                    {user.projects?.length === 1 ? '' : 's'}
+                  </span>
+                </h4>
+                <div className="card-body bg-light p-2">
+                  {/* You can add additional user details here if needed */}
+                </div>
+                <Link
+                  className="btn btn-block btn-squared btn-light text-dark"
+                  to={`/user/${user._id}`}
+                >
+                  View and endorse their projects.
+                </Link>
+              </div>
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+};
+
+export default UserList;

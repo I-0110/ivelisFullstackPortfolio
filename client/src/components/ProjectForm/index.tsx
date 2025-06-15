@@ -2,28 +2,28 @@ import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_SKILL } from '../../utils/mutations';
+import { ADD_PROJECT } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-interface SkillFormProps {
-  profileId: string;
+interface ProjectFormProps {
+  userId: string;
 }
 
-const SkillForm: React.FC<SkillFormProps> = ({ profileId }) => {
-  const [skill, setSkill] = useState('');
+const ProjectForm: React.FC<ProjectFormProps> = ({ userId }) => {
+  const [project, setProject] = useState('');
 
-  const [addSkill, { error }] = useMutation(ADD_SKILL);
+  const [addProject, { error }] = useMutation(ADD_PROJECT);
 
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     try {
-      await addSkill({
-        variables: { profileId, skill },
+      await addProject({
+        variables: { userId, project },
       });
 
-      setSkill('');
+      setProject('');
     } catch (err) {
       console.error(err);
     }
@@ -31,7 +31,7 @@ const SkillForm: React.FC<SkillFormProps> = ({ profileId }) => {
 
   return (
     <div>
-      <h4>Endorse some more skills below.</h4>
+      <h4>Endorse some more projects below.</h4>
 
       {Auth.loggedIn() ? (
         <form
@@ -40,16 +40,20 @@ const SkillForm: React.FC<SkillFormProps> = ({ profileId }) => {
         >
           <div className="col-12 col-lg-9">
             <input
-              placeholder="Endorse some skills..."
-              value={skill}
+              value={project}
+              placeholder="Endorse some projects..."
               className="form-input w-100"
-              onChange={(event) => setSkill(event.target.value)}
+              onChange={(event) => setProject(event.target.value)}
             />
           </div>
 
           <div className="col-12 col-lg-3">
-            <button className="btn btn-info btn-block py-3" type="submit">
-              Endorse Skill
+            <button 
+              className="btn btn-info btn-block py-3" 
+              type="submit"
+              disabled={!project.trim()}
+              >
+              Endorse Project
             </button>
           </div>
           {error && (
@@ -60,12 +64,12 @@ const SkillForm: React.FC<SkillFormProps> = ({ profileId }) => {
         </form>
       ) : (
         <p>
-          You need to be logged in to endorse skills. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+          You need to be logged in to endorse projects. Please{' '}
+          <Link to="/login">login</Link> or <Link to="/signup">signup</Link>.
         </p>
       )}
     </div>
   );
 };
 
-export default SkillForm;
+export default ProjectForm;
