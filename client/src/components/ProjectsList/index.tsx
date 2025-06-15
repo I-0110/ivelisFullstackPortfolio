@@ -1,51 +1,51 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
 
-import { REMOVE_SKILL } from '../../utils/mutations';
+import { REMOVE_PROJECT } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
-interface SkillsListProps {
-  skills?: string[];
+interface ProjectsListProps {
+  projects?: string[];
   isLoggedInUser: boolean;
 }
 
-const SkillsList: React.FC<SkillsListProps> = ({ skills = [], isLoggedInUser }) => {
-  const [removeSkill, { error }] = useMutation
-  (REMOVE_SKILL, {
+const ProjectsList: React.FC<ProjectsListProps> = ({ projects = [], isLoggedInUser }) => {
+  const [removeProject, { error, loading }] = useMutation
+  (REMOVE_PROJECT, {
     refetchQueries: [
-      QUERY_ME,
-      'me'
+      { query:QUERY_ME }
     ]
   });
 
-  const handleRemoveSkill = async (skill: any) => {
+  const handleRemoveProject = async (project: string) => {
     try {
-      await removeSkill({
-        variables: { skill },
+      await removeProject({
+        variables: { project },
       });
     } catch (err) {
       console.error(err);
     }
   };
-  if (!skills.length) {
-    return <h3>No Skills Yet</h3>;
+  if (!projects.length) {
+    return <h3>No Projects Yet</h3>;
   }
 
   return (
     <div>
       <div className="flex-row justify-space-between my-4">
-        {skills &&
-          skills.map((skill) => (
-            <div key={skill} className="col-12 col-xl-6">
+        {projects &&
+          projects.map((project) => (
+            <div key={project} className="col-12 col-xl-6">
               <div className="card mb-3">
                 <h4 className="card-header bg-dark text-light p-2 m-0 display-flex align-center">
-                  <span>{skill}</span>
+                  <span>{project}</span>
                   {isLoggedInUser && (
                     <button
                       className="btn btn-sm btn-danger ml-auto"
-                      onClick={() => handleRemoveSkill(skill)}
+                      aria-label={`Remove project ${project}`}
+                      onClick={() => handleRemoveProject(project)}
                     >
-                      X
+                      {loading ? 'Removing...' : 'X'}
                     </button>
                   )}
                 </h4>
@@ -60,4 +60,4 @@ const SkillsList: React.FC<SkillsListProps> = ({ skills = [], isLoggedInUser }) 
   );
 };
 
-export default SkillsList;
+export default ProjectsList;

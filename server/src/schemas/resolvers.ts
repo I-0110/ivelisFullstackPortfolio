@@ -55,9 +55,9 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (_parent: any, { input }: AddUserArgs, context: Context): Promise<{ token: string; user: User }> => {
+    addUser: async (_parent: any, { input }: AddUserArgs): Promise<{ token: string; user: User }> => {
       // Only allow admin to create another admin
-      const isAdminEmail = input.email === 'ivelisbecker@gmail.com';
+      const isAdminEmail = input.email === process.env.ADMIN_EMAIL;
       const role = isAdminEmail ? 'admin' : 'user';
 
       const user = await User.create({ ...input, role }) as User;
@@ -74,11 +74,16 @@ const resolvers = {
         throw AuthenticationError;
       }
 
-      // Enforce admin status based on email
-      if (email === 'ivelisbecker@gmail.com' && user.role !== 'admin') {
+      // Enforce admin status based on one email. Comment this if it has multiple admins
+      const isAdminEmail = email === process.env.ADMIN_EMAIL;
+      if (isAdminEmail && user.role !== 'admin') {
         user.role = 'admin';
         await user.save();
       }
+
+      // uncomment if this website includes multiple admins. Also, use 'ADMIN_EMAILS' instead of a single on .env 
+      // const adminEmails =  process.env.ADMIN_EMAILS?.split(',') || [];
+      //const isAdminEmail = adminEmails.includes(input.email);
 
       const token = signToken(user._id, user.role);
       return { token, user };

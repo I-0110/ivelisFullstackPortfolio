@@ -2,15 +2,21 @@ import { type JwtPayload, jwtDecode } from 'jwt-decode';
 
 interface ExtendedJwt extends JwtPayload {
   data:{
-    name:string,
-    email:string,
-    _id:string
+    name:string;
+    email:string;
+    _id:string;
+    role?: string;
   }
 };
 
 class AuthService {
   getUser() {
     return jwtDecode<ExtendedJwt>(this.getToken());
+  }
+
+  getUserRole(): string | null {
+    const decoded = this.getUser();
+    return decoded?.data?.role || null;
   }
 
   loggedIn() {
@@ -25,8 +31,9 @@ class AuthService {
       if (decoded?.exp && decoded?.exp < Date.now() / 1000) {
         return true;
       }
-    } catch (err) {
       return false;
+    } catch (err) {
+      return true;
     }
   }
 
