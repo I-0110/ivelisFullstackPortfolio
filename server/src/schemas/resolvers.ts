@@ -6,11 +6,12 @@ interface User {
   name: string;
   email: string;
   password: string;
-  skills: string[];
+  projects: string[];
+  role?: 'user' | 'admin';
 }
 
 interface UserArgs {
-  profileId: string;
+  userId: string;
 }
 
 interface AddUserArgs {
@@ -18,17 +19,18 @@ interface AddUserArgs {
     name: string;
     email: string;
     password: string;
+    role?: 'user' | 'admin';
   }
 }
 
-interface AddSkillArgs {
-  profileId: string;
-  skill: string;
+interface AddProjectArgs {
+  userId: string;
+  project: string;
 }
 
-interface RemoveSkillArgs {
-  profileId: string;
-  skill: string;
+interface RemoveProjectArgs {
+  userId: string;
+  project: string;
 }
 
 interface Context {
@@ -37,11 +39,13 @@ interface Context {
 
 const resolvers = {
   Query: {
-    profiles: async (): Promise<User[]> => {
+    users: async (): Promise<User[]> => {
       return await User.find();
     },
-    profile: async (_parent: any, { profileId }: UserArgs): Promise<User | null> => {
-      return await User.findOne({ _id: profileId });
+    user: async (_parent: any, { userId }: UserArgs): Promise<User | null> => {
+      const user = await User.findOne({ _id: userId });
+      if(!user) throw new Error('User not found');
+      return user;
     },
     me: async (_parent: any, _args: any, context: Context): Promise<User | null> => {
       if (context.user) {
@@ -51,29 +55,32 @@ const resolvers = {
     },
   },
   Mutation: {
-    addProfile: async (_parent: any, { input }: AddProfileArgs): Promise<{ token: string; profile: Profile }> => {
-      const profile = await User.create({ ...input });
-      const token = signToken(profile.name, profile.email, profile._id);
-      return { token, profile };
+    addUser: async (_parent: any, { input }: AddUserArgs, context: Context): Promise<{ token: string; user: User }> => {
+      // Only allow admin to create another admin
+      const role = context.user?.role === 'admin' && input.role === 'admin' ? 'admin' : 'user';
+
+      const user = await User.create({ ...input, role }) as User;
+      const token = signToken( user._id, user.role );
+      return { token, user };
     },
-    login: async (_parent: any, { email, password }: { email: string; password: string }): Promise<{ token: string; profile: Profile }> => {
-      const profile = await User.findOne({ email });
-      if (!profile) {
+    login: async (_parent: any, { email, password }: { email: string; password: string }): Promise<{ token: string; user: User }> => {
+      const user = await User.findOne({ email });
+      if (!user) {
         throw AuthenticationError;
       }
-      const correctPw = await profile.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);
       if (!correctPw) {
         throw AuthenticationError;
       }
-      const token = signToken(profile.name, profile.email, profile._id);
-      return { token, profile };
+      const token = signToken(user._id, user.role);
+      return { token, user };
     },
-    addSkill: async (_parent: any, { profileId, skill }: AddSkillArgs, context: Context): Promise<Profile | null> => {
+    addProject: async (_parent: any, { userId, project }: AddProjectArgs, context: Context): Promise<User | null> => {
       if (context.user) {
         return await User.findOneAndUpdate(
-          { _id: profileId },
+          { _id: userId },
           {
-            $addToSet: { skills: skill },
+            $addToSet: { projects: project },
           },
           {
             new: true,
@@ -83,17 +90,17 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    removeProfile: async (_parent: any, _args: any, context: Context): Promise<User | null> => {
+    removeUser: async (_parent: any, _args: any, context: Context): Promise<User | null> => {
       if (context.user) {
         return await User.findOneAndDelete({ _id: context.user._id });
       }
       throw AuthenticationError;
     },
-    removeSkill: async (_parent: any, { skill }: RemoveSkillArgs, context: Context): Promise<Profile | null> => {
+    removeProject: async (_parent: any, { project }: RemoveProjectArgs, context: Context): Promise<User | null> => {
       if (context.user) {
         return await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { skills: skill } },
+          { $pull: { projects: project } },
           { new: true }
         );
       }

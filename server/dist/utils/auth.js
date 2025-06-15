@@ -19,8 +19,8 @@ export const authenticateToken = ({ req }) => {
     }
     return req;
 };
-export const signToken = (username, email, _id) => {
-    const payload = { username, email, _id };
+export const signToken = (userId, role = 'user') => {
+    const payload = { id: userId, role };
     const secretKey = process.env.JWT_SECRET_KEY;
     return jwt.sign({ data: payload }, secretKey, { expiresIn: '2h' });
 };

@@ -8,6 +8,7 @@ interface IUser extends Document {
   email: string;
   password:string;
   projects: string[];
+  role?: 'user' | 'admin';
   isCorrectPassword(password: string): Promise<boolean>;
 }
 
@@ -37,6 +38,11 @@ const userSchema = new Schema<IUser>(
         trim: true,
       },
     ],
+    role: {
+      type: String,
+      enum: ['user', 'admin'],
+      default: 'user',
+    }
   },
   {
     timestamps: true,
