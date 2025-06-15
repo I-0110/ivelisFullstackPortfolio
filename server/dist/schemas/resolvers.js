@@ -1,42 +1,47 @@
-import { Profile } from '../models/index.js';
+import { User } from '../models/index.js';
 import { signToken, AuthenticationError } from '../utils/auth.js';
 const resolvers = {
     Query: {
-        profiles: async () => {
-            return await Profile.find();
+        users: async () => {
+            return await User.find();
         },
-        profile: async (_parent, { profileId }) => {
-            return await Profile.findOne({ _id: profileId });
+        user: async (_parent, { userId }) => {
+            const user = await User.findOne({ _id: userId });
+            if (!user)
+                throw new Error('User not found');
+            return user;
         },
         me: async (_parent, _args, context) => {
             if (context.user) {
-                return await Profile.findOne({ _id: context.user._id });
+                return await User.findOne({ _id: context.user._id });
             }
             throw AuthenticationError;
         },
     },
     Mutation: {
-        addProfile: async (_parent, { input }) => {
-            const profile = await Profile.create({ ...input });
-            const token = signToken(profile.name, profile.email, profile._id);
-            return { token, profile };
+        addUser: async (_parent, { input }, context) => {
+            // Only allow admin to create another admin
+            const role = context.user?.role === 'admin' && input.role === 'admin' ? 'admin' : 'user';
+            const user = await User.create({ ...input, role });
+            const token = signToken(user._id, user.role);
+            return { token, user };
         },
         login: async (_parent, { email, password }) => {
-            const profile = await Profile.findOne({ email });
-            if (!profile) {
+            const user = await User.findOne({ email });
+            if (!user) {
                 throw AuthenticationError;
             }
-            const correctPw = await profile.isCorrectPassword(password);
+            const correctPw = await user.isCorrectPassword(password);
             if (!correctPw) {
                 throw AuthenticationError;
             }
-            const token = signToken(profile.name, profile.email, profile._id);
-            return { token, profile };
+            const token = signToken(user._id, user.role);
+            return { token, user };
         },
-        addSkill: async (_parent, { profileId, skill }, context) => {
+        addProject: async (_parent, { userId, project }, context) => {
             if (context.user) {
-                return await Profile.findOneAndUpdate({ _id: profileId }, {
-                    $addToSet: { skills: skill },
+                return await User.findOneAndUpdate({ _id: userId }, {
+                    $addToSet: { projects: project },
                 }, {
                     new: true,
                     runValidators: true,
@@ -44,15 +49,15 @@ const resolvers = {
             }
             throw AuthenticationError;
         },
-        removeProfile: async (_parent, _args, context) => {
+        removeUser: async (_parent, _args, context) => {
             if (context.user) {
-                return await Profile.findOneAndDelete({ _id: context.user._id });
+                return await User.findOneAndDelete({ _id: context.user._id });
             }
             throw AuthenticationError;
         },
-        removeSkill: async (_parent, { skill }, context) => {
+        removeProject: async (_parent, { project }, context) => {
             if (context.user) {
-                return await Profile.findOneAndUpdate({ _id: context.user._id }, { $pull: { skills: skill } }, { new: true });
+                return await User.findOneAndUpdate({ _id: context.user._id }, { $pull: { projects: project } }, { new: true });
             }
             throw AuthenticationError;
         },
