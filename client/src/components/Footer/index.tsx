@@ -13,17 +13,36 @@ const Footer: React.FC = () => {
   }
   
   return (
-    <footer className="w-100 mt-auto text-dark p-4">
+    <footer className="text-center p-4 text-light-text dark:text-dark-text">
       <div className="container text-center mb-5">
         {location.pathname !== '/' && (
           <button
-            className="btn btn-dark mb-3"
+            className="btn btn-lg m-2 bg-gray-200 text-light-text dark:bg-gray-700 dark:text-dark-text hover:opacity-90 transition"
             onClick={handleGoBack}
           >
             &larr; Go Back
           </button>
         )}
-        <h4>&copy; {new Date().getFullYear()} - Tech Friends</h4>
+        <h4 className="text-xl font-semibold mb-4">&copy; {new Date().getFullYear()} - Ivelis Becker</h4>
+        <div className="flex justify-center space-x-6">
+          {/* GitHub */}
+          <a
+            href="https://github.com/I-0110"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:opacity-80"
+          >
+            <img src="/github.svg" alt="GitHub" className="w-6 h-6 invert-0 dark:invert transition duration-300" />
+          </a>
+
+          {/* Email */}
+          <a
+            href="mailto:ivelisbecker@gmail.com"
+            className="transition-colors hover:opacity-80"
+          >
+            <img src="/email.svg" alt="Gmail" className="w-6 h-6 invert-0 dark:invert transition duration-300" />
+          </a>
+        </div>
       </div>
     </footer>
   );

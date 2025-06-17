@@ -8,32 +8,33 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-info text-dark mb-4 py-3 display-flex align-center">
+    <header className="bg-background text-text dark:bg-dark-background dark:text-dark-text mb-4 py-3 display-flex align-center">
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
+        <h3>Welcome to</h3>
         <Link className="text-dark" to="/">
           <h1 className="m-0" style={{ fontSize: '3rem' }}>
-            Tech Friends
+            Ivelis' Portfolio
           </h1>
         </Link>
         <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-          Meet your new programming pals.
+          Showcasting my work and projects.
         </p>
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-primary m-2" to="/me">
+              <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/me">
                 View My Profile
               </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <button className="btn btn-lg m-2 bg-light-linkhint text-light-text dark:bg-dark-linkhint hover:opacity-90 transitions" onClick={logout}>
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-primary m-2" to="/login">
+              <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/login">
                 Login
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
+              <Link className="btn btn-lg m-2 bg-light-primary text-white dark:bg-dark-primary dark:text-white hover:opacity-90 transition" to="/signup">
                 Signup
               </Link>
             </>

@@ -10,14 +10,15 @@ interface ProjectsListProps {
 }
 
 const ProjectsList: React.FC<ProjectsListProps> = ({ projects = [], isLoggedInUser }) => {
-  const [removeProject, { error, loading }] = useMutation
+  const [removeProject, { error }] = useMutation
   (REMOVE_PROJECT, {
     refetchQueries: [
-      { query:QUERY_ME }
+      QUERY_ME,
+      'me'
     ]
   });
 
-  const handleRemoveProject = async (project: string) => {
+  const handleRemoveProject = async (project: any) => {
     try {
       await removeProject({
         variables: { project },
@@ -42,10 +43,9 @@ const ProjectsList: React.FC<ProjectsListProps> = ({ projects = [], isLoggedInUs
                   {isLoggedInUser && (
                     <button
                       className="btn btn-sm btn-danger ml-auto"
-                      aria-label={`Remove project ${project}`}
                       onClick={() => handleRemoveProject(project)}
                     >
-                      {loading ? 'Removing...' : 'X'}
+                      X
                     </button>
                   )}
                 </h4>
