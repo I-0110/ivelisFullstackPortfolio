@@ -9,6 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import Nav from './components/Navbar';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -60,6 +61,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="flex flex-col justify-flex-start min-h-screen transition-colors duration-300 bg-white text-black dark:bg-gray-900 dark:text-white">
+      <Nav />
       <Header />
         <div className="transition-colors duration-300 bg-light-accent text-light-text dark:bg-[#173924] dark:text-dark-text">
             {/* Toggle Switch */}
