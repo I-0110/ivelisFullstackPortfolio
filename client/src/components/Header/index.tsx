@@ -1,47 +1,40 @@
 import { Link } from 'react-router-dom';
-import { type MouseEvent } from 'react';
+import { type MouseEvent} from 'react';
 import Auth from '../../utils/auth';
 
 const Header = () => {
-  const loggedIn = Auth.loggedIn();
   const logout = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     Auth.logout();
   };
-  const user = loggedIn ? Auth.getUser().data : null;
-
   return (
-    <header className="bg-white text-dark mt-[64px] py-3 flex items-center">
-      <div className="container flex flex-col justify-space-between-lg justify-center align-center text-center">
+    <header className="bg-background text-text dark:bg-dark-background dark:text-dark-text mb-4 py-3 display-flex align-center">
+      <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
+        <h3>Welcome to</h3>
+        <Link className="text-dark" to="/">
+          <h1 className="m-0" style={{ fontSize: '3rem' }}>
+            Ivelis' Portfolio
+          </h1>
+        </Link>
+        <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
+          Showcasting my work and projects.
+        </p>
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="text-dark" to="/">
-                <h1 className="m-0" style={{ fontSize: '3rem' }}>
-                  Welcome to My Portfolio
-                </h1>
-                <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-                Showcasing my work and projects.
-                </p>
+              <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/me">
+                View My Profile
               </Link>
-              <Link className="btn btn-lg btn-primary m-2" to="/me">
-                View My Projects
-              </Link>
+              <button className="btn btn-lg m-2 bg-light-linkhint text-light-text dark:bg-dark-linkhint hover:opacity-90 transitions" onClick={logout}>
+                Logout
+              </button>
             </>
           ) : (
             <>
-              <Link className="text-dark" to="/">
-                <h1 className="m-0" style={{ fontSize: '3rem' }}>
-                  Welcome to My Portfolio
-                </h1>
-                <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-                  Showcasing my work and projects.
-                </p>
-              </Link>
-              <Link className="btn btn-lg btn-primary m-2" to="/login">
+              <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/login">
                 Login
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
+              <Link className="btn btn-lg m-2 bg-light-primary text-white dark:bg-dark-primary dark:text-white hover:opacity-90 transition" to="/signup">
                 Signup
               </Link>
             </>

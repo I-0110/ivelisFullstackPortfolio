@@ -22,7 +22,7 @@ const User = () => {
   // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_USER` query
   const user = data?.me || data?.user || {};
 
-  // Use React Router's `<Navigate />` component to redirect to personal profile page if name is yours
+  // Use React Router's `<Navigate />` component to redirect to personal user page if name is yours
   if (Auth.loggedIn() && Auth.getUser().data._id === userId) {
     return <Navigate to="/me" />;
   }
@@ -34,7 +34,7 @@ const User = () => {
   if (!user?.name) {
     return (
       <h4>
-        You need to be logged in to see your profile page. Use the navigation
+        You need to be logged in to see your user page. Use the navigation
         links above to sign up or log in!
       </h4>
     );

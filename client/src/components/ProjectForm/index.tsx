@@ -40,19 +40,15 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ userId }) => {
         >
           <div className="col-12 col-lg-9">
             <input
-              value={project}
               placeholder="Endorse some projects..."
+              value={project}
               className="form-input w-100"
               onChange={(event) => setProject(event.target.value)}
             />
           </div>
 
           <div className="col-12 col-lg-3">
-            <button 
-              className="btn btn-info btn-block py-3" 
-              type="submit"
-              disabled={!project.trim()}
-              >
+            <button className="btn btn-info btn-block py-3" type="submit">
               Endorse Project
             </button>
           </div>
@@ -65,7 +61,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ userId }) => {
       ) : (
         <p>
           You need to be logged in to endorse projects. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup</Link>.
+          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
     </div>

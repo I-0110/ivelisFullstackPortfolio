@@ -12,7 +12,7 @@ interface UserListProps {
 }
 
 const UserList: React.FC<UserListProps> = ({ users, title }) => {
-  if (!users || !users.length) {
+  if (!users.length) {
     return <h3>No Users Yet</h3>;
   }
 
@@ -27,9 +27,9 @@ const UserList: React.FC<UserListProps> = ({ users, title }) => {
                 <h4 className="card-header bg-dark text-light p-2 m-0">
                   {user.name} <br />
                   <span className="text-white" style={{ fontSize: '1rem' }}>
-                    currently has {user.projects?.length ?? 0}{' '}
+                    currently has {user.projects ? user.projects.length : 0}{' '}
                     endorsed project
-                    {user.projects?.length === 1 ? '' : 's'}
+                    {user.projects && user.projects.length === 1 ? '' : 's'}
                   </span>
                 </h4>
                 <div className="card-body bg-light p-2">
@@ -37,7 +37,7 @@ const UserList: React.FC<UserListProps> = ({ users, title }) => {
                 </div>
                 <Link
                   className="btn btn-block btn-squared btn-light text-dark"
-                  to={`/user/${user._id}`}
+                  to={`/users/${user._id}`}
                 >
                   View and endorse their projects.
                 </Link>
