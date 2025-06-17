@@ -8,7 +8,14 @@ const Nav = () => {
     Auth.logout();
     };
     return (
-        <nav className='bg-white text-dark w-full flex justify-between items-center px-6 py-4 shadow-md fixed top-0 z-50'>
+        <nav className='bg-white text-dark w-full flex justify-evenly items-center px-6 py-4 shadow-md fixed top-0 z-50'>
+            <Link to='/' className='text-xl font-bold'>
+                {/* Light Mode Logo */}
+                <img src='/IB.svg' alt='Logo Light' className='h-13 w-auto block dark:hidden' />
+
+                {/* Dark Mode Logo */}
+                <img src='/IB-dark.svg' alt='Logo Dark' className='h-13 w-auto hidden dark:block' />
+            </Link>
             <Link to='/' className='text-xl font-bold'>
                 Home
             </Link>
@@ -24,16 +31,16 @@ const Nav = () => {
                     <Link className="btn btn-sm btn-primary" to="/me">
                         Pending Projects
                     </Link>
-                    <button className="btn btn-sm btn-light" onClick={logout}>
+                    <button className="btn btn-sm btn-light text-xl" onClick={logout}>
                         Logout
                     </button>
                     </>
                 ) : (
                     <>
-                    <Link className="btn btn-sm btn-primary" to="/login">
+                    <Link className="btn btn-sm btn-primary text-xl" to="/login">
                         Login
                     </Link>
-                    <Link className="btn btn-sm btn-light" to="/signup">
+                    <Link className="btn btn-sm btn-light text-xl" to="/signup">
                         Signup
                     </Link>
                     </>

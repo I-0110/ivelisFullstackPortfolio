@@ -1,41 +1,51 @@
 import { Link } from 'react-router-dom';
+import { type MouseEvent } from 'react';
 import Auth from '../../utils/auth';
-import { Source } from 'graphql';
-import '../../App.css';
 
 const Header = () => {
   const loggedIn = Auth.loggedIn();
+  const logout = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    Auth.logout();
+  };
   const user = loggedIn ? Auth.getUser().data : null;
 
   return (
-    <header className="bg-white text-dark">
-      {/* Video in text background */}
-      <div className='relative w-full h-[50vh] mt-[72px] overflow-hidden flex items-center justify-center'>
-        <video className='absolute top-0 left-0 w-full h-full object-cover z-0' autoPlay muted loop playsInline>
-          <source src="/bgLight-black.mp4" type="video/mp4" />
-        </video>
-
-        {/* Overlay text */}
-        <div className='relative flex min-h-screen items-center justify-center overflow-hidden bg-transparent'>
-          <div className="space-y-7">
-          {loggedIn && user ? (
+    <header className="bg-white text-dark mt-[64px] py-3 flex items-center">
+      <div className="container flex flex-col justify-space-between-lg justify-center align-center text-center">
+        <div>
+          {Auth.loggedIn() ? (
             <>
-              <h3 className="text-5xl md:text-6xl font-extrabold uppercase text-white mix-blend-lighten opacity-90">
-                Welcome back,
-              </h3>
-              <h1 className="text-white text-2xl md:text-4xl mt-2">{user.name}</h1>
+              <Link className="text-dark" to="/">
+                <h1 className="m-0" style={{ fontSize: '3rem' }}>
+                  Welcome to My Portfolio
+                </h1>
+                <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
+                Showcasing my work and projects.
+                </p>
+              </Link>
+              <Link className="btn btn-lg btn-primary m-2" to="/me">
+                View My Projects
+              </Link>
             </>
           ) : (
             <>
-              <h1 className="text-9xl font-extrabold text-transparent bg-clip-text bg-[url('/bgLight-black.mp4')]">
-                Ivelis Becker
-              </h1>
-              <h3 className="text-9xl font-extrabold text-transparent bg-clip-text bg-[url('/bgLight-black.mp4')]">
-                Fullstack Developer
-              </h3>
+              <Link className="text-dark" to="/">
+                <h1 className="m-0" style={{ fontSize: '3rem' }}>
+                  Welcome to My Portfolio
+                </h1>
+                <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
+                  Showcasing my work and projects.
+                </p>
+              </Link>
+              <Link className="btn btn-lg btn-primary m-2" to="/login">
+                Login
+              </Link>
+              <Link className="btn btn-lg btn-light m-2" to="/signup">
+                Signup
+              </Link>
             </>
           )}
-          </div>
         </div>
       </div>
     </header>
