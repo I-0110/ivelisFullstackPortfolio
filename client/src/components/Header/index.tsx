@@ -22,20 +22,20 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/me">
-                View My Profile
+              <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/projects">
+                Ivelis' Projects
               </Link>
-              <button className="btn btn-lg m-2 bg-light-linkhint text-light-text dark:bg-dark-linkhint hover:opacity-90 transitions" onClick={logout}>
-                Logout
-              </button>
+              <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/me">
+                My Projects
+              </Link>
             </>
           ) : (
             <>
-              <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/login">
-                Login
+              <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/projects">
+                Projects
               </Link>
-              <Link className="btn btn-lg m-2 bg-light-primary text-white dark:bg-dark-primary dark:text-white hover:opacity-90 transition" to="/signup">
-                Signup
+              <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/signup">
+                Hire Me
               </Link>
             </>
           )}
