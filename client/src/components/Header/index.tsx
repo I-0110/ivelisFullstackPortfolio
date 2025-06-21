@@ -28,6 +28,9 @@ const Header = () => {
               <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/me">
                 My Projects
               </Link>
+              <button className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" onClick={logout}>
+                Logout
+              </button>
             </>
           ) : (
             <>
