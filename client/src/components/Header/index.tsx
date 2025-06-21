@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { type MouseEvent} from 'react';
 import Auth from '../../utils/auth';
+import Video from '../../components/BgVideo';
 
 const Header = () => {
   const logout = (event: MouseEvent<HTMLButtonElement>) => {
@@ -8,13 +9,11 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-background text-text dark:bg-dark-background dark:text-dark-text mb-4 py-3 display-flex align-center">
+    <header className="mb-4 py-3 display-flex align-center">
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
-        <h3>Welcome to</h3>
-        <Link className="text-dark" to="/">
-          <h1 className="m-0" style={{ fontSize: '3rem' }}>
-            Ivelis' Portfolio
-          </h1>
+        <h3>Hello, my name is</h3>
+        <Link className="spacer text-dark" to="/">
+          <Video />
         </Link>
         <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
           Showcasting my work and projects.
