@@ -426,13 +426,22 @@ button {
 }
 
 a {
-  color: #1b89bc;
+  color: transparent;
   text-decoration: none;
 }
 
 a:hover {
-  color: #065b83;
   text-decoration: underline;
+}
+
+/* LOGO */
+.logo {
+  content: url('/IB.svg');
+  width: 40px;
+}
+
+.dark .logo {
+  content: url('/IB-dark.svg');
 }
 
 /* HEIGHT / WIDTH UTILS */
