@@ -40,7 +40,8 @@ const Nav = () => {
             } flex-col lg:flex-row lg:flex items-center gap-4 absolute lg:static top-full right-0 w-full lg:w-auto bg-black lg:bg-transparent px-4 pt-4 pb-6 lg:p-0 z-50`}
         >
         <Link className="m-2 text-white" to="/">Home</Link>
-        <Link className="m-2 text-white" to="/about">About / Resume</Link>
+        <Link className="m-2 text-white" to="/about">About</Link>
+        <Link className="m-2 text-white" to="/about">Resume PDF</Link>
 
         {Auth.loggedIn() ? (
             <>
