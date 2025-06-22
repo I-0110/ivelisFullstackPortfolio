@@ -1,9 +1,9 @@
 function Video() {
     return (
         <div className="video-body video-section">
-            <video src="/bgDark-white.mp4" loop autoPlay muted></video>
+            <video src="/bgLight-black.mp4" loop autoPlay muted></video>
             <div className="video-copy">
-                <h1>Ivelis Becker</h1>
+                <h1>IVELIS BECKER</h1>
             </div>
         </div>
     )

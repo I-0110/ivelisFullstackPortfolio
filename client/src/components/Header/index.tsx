@@ -31,7 +31,6 @@ const Header = () => {
       ) : (
         <>
           <h3>Hello, my name is</h3>
-          <h3>Ivelis</h3>
           <Link to="/">
             <Video />
           </Link>
