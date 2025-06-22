@@ -15,10 +15,10 @@ const Header = () => {
         <>
           <h3>Welcome back,</h3>
           <h3><data value="name"></data></h3>
-          <Link to="/">
+          <Link className='flex justify-center' to="/">
             <Video />
           </Link>
-          <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/projects">
+          <Link className="btn btn-lg m-2 bg-dark-headline text-dark-muted hover:opacity-90 transition" to="/projects">
             Ivelis' Projects
           </Link>
           <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/me">
@@ -31,7 +31,7 @@ const Header = () => {
       ) : (
         <>
           <h3>Hello, my name is</h3>
-          <Link to="/">
+          <Link className='flex justify-center' to="/">
             <Video />
           </Link>
           <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
