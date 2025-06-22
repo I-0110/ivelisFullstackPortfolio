@@ -23,6 +23,8 @@
  */
 body {
   margin: 0;
+  color: #f5f5f5;
+  background-color: #000000;
 }
 
 /**
@@ -436,7 +438,7 @@ a:hover {
 
 /* VIDEO-SECTION */
 .video-body {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: #f5f5f5;
 }
 
 .video-section {
@@ -460,13 +462,13 @@ a:hover {
   height: 100%;
   margin-left: -2vw;
   line-height: 78vw;
-  background-color: #111111;
+  background-color: #000000;
   user-select: none;
   mix-blend-mode: multiply;
 }
 
 .video-copy h1 {
-  color: #ffffff;
+  color: #f5f5f5;
   font-size: 21vw;
   letter-spacing: 0.1vw;
 }
