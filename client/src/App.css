@@ -436,7 +436,7 @@ a:hover {
 
 /* VIDEO-SECTION */
 .video-body {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .video-section {
@@ -460,13 +460,13 @@ a:hover {
   height: 100%;
   margin-left: -2vw;
   line-height: 78vw;
-  background-color: #ffffff;
+  background-color: #111111;
   user-select: none;
   mix-blend-mode: multiply;
 }
 
 .video-copy h1 {
-  color: #111111;
+  color: #ffffff;
   font-size: 21vw;
   letter-spacing: 0.1vw;
 }
