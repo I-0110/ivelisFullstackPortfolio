@@ -458,12 +458,17 @@ a:hover {
   left: 0;
   right: 0;
   height: 100%;
+  margin-left: -2vw;
+  /* line-height: 78vw; */
+  background-color: #111111;
+  user-select: none;
+  mix-blend-mode: multiply;
 }
 
 .video-copy h1 {
   color: #ffffff;
-  font-size: 33vw !important;
-  margin-left: -2vw;
+  /* letter-spacing: -5vw; */
+  font-size: 21vw !important;
 }
 
 
