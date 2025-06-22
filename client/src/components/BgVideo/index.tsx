@@ -7,7 +7,7 @@ function Video() {
         if (Auth.loggedIn()) {
             const user = Auth.getUser();
             console.log("User object:", user);
-            username = user?.data?.name || user?.name ||  "customer";
+            username = user?.data?.name ||  "customer";
         }
 
     return (
