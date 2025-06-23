@@ -1,25 +1,15 @@
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
-
 // import UserList from '../components/UserList';
-
 import { QUERY_USERS } from '../utils/queries';
+import InteractiveCarousel from '../components/InteractiveCarousel';
 
 const Home = () => {
   const { loading, 
     // data 
   } = useQuery(QUERY_USERS);
   // const users = data?.users || [];
-
-  const images = [
-    { src: "/musicDiary.png", alt: "musicDiary" },
-    { src: "/Munchies.png", alt: "Munchies" },
-    { src: "/theFarm.png", alt: "Farm Management" },
-    { src: "/ivelisReact.png", alt: "ivelisReact" },
-    { src: "/coffee.png", alt: "Good Coffee Beans" },
-    { src: "/ivelisHTML-CSS.png", alt: "ivelisHTML-CSS" },
-  ];
 
   return (
     <main>
@@ -35,25 +25,9 @@ const Home = () => {
             <main className='grid grid-cols-1 lg:grid-cols-3 gap-6 p-6 max-w-screen-xl mx-auto'>
               {/* Project Display */}
               <section className='banner'>
-                {/* Carousel or 3D Showcase */}
+                <InteractiveCarousel />
                 <h2 className=''>Projects</h2>
-                <div
-                  className="slider"
-                  style={{ ['--quantity']: 6 } as React.CSSProperties}
-                >
-                  <div className="item">
-                    {images.map((img, index) => (
-                      <img
-                        key={img.src}
-                        src={img.src}
-                        alt={img.alt}
-                        style={{ ['--position']: index + 1 } as React.CSSProperties}
-                      />
-                    ))}
-                  </div>
-                </div>
               </section>
-
               {/* Video loop under projects */}
               <aside className='flex items-center justify-center'>
                 <video src='/hello.mp4' typeof='video/mp4' className='rounded-lg shadow-md w-full max-w-xs' autoPlay muted playsInline/>
