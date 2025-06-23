@@ -11,7 +11,7 @@ function Video() {
         }
 
     return (
-        <div className="video-body video-section">
+        <div className="video-body video-section mt-[-10px]">
             <video src="/bgDark-white.mp4" loop autoPlay muted></video>
             <div className="video-copy">
                 <h1>{Auth.loggedIn() ? username : "IVELIS BECKER"}</h1>

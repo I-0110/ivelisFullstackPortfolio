@@ -23,7 +23,7 @@
  */
 body {
   margin: 0;
-  color: #f5f5f5;
+  color: #ffffff;
   background-color: #000000;
 }
 
@@ -365,7 +365,6 @@ body {
   padding: 0;
   font-family: 'Times New Roman', Times, serif;
   font-size: 16px;
-  color: #1a1a1a;
 }
 
 h1,
@@ -459,7 +458,10 @@ a:hover {
   top: 0;
   left: 0;
   right: 0;
-  height: 100%;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  
   margin-left: -2vw;
   line-height: 78vw;
   background-color: #000000;
