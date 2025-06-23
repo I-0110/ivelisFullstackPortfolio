@@ -24,24 +24,13 @@ const Footer: React.FC = () => {
           </button>
         )}
         <h4 className="text-xl font-semibold mb-4">&copy; {new Date().getFullYear()} - Ivelis Becker</h4>
-        <div className="flex justify-center space-x-6">
-          {/* GitHub */}
-          <a
-            href="https://github.com/I-0110"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:opacity-80"
-          >
-            <img src="/github.svg" alt="GitHub" className="w-6 h-6 invert-0 dark:invert transition duration-300" />
-          </a>
-
-          {/* Email */}
-          <a
-            href="mailto:ivelisbecker@gmail.com"
-            className="transition-colors hover:opacity-80"
-          >
-            <img src="/email.svg" alt="Gmail" className="w-6 h-6 invert-0 dark:invert transition duration-300" />
-          </a>
+        {/* Tech Stack Badges */}
+        <div className="col-span-1 lg:col-span-3 mt-6 flex flex-wrap justify-center gap-4">
+          {["JavaScript", "React", "Next.js", "Tailwind", "Node.js", "MongoDB", "TypeScript"].map((tech) => (
+            <span key={tech} className="bg-gray-200 px-4 py-2 rounded-full text-sm font-medium">
+              {tech}
+            </span>
+          ))}
         </div>
       </div>
     </footer>
