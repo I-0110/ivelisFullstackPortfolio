@@ -31,7 +31,7 @@ const Header = () => {
       ) : (
         <>
           <h3>Hello, my name is</h3>
-          <Link className='flex justify-center' to="/">
+          <Link to="/">
             <Video />
           </Link>
           <p className="m-0 bg-dark-headline text-dark-muted hover:opacity-90 transition" style={{ fontSize: '1.75rem', fontWeight: '700' }}>

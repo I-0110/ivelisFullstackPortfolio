@@ -493,8 +493,13 @@ a:hover {
   left: calc(50% - 100px);
   /* 3D effect */
   transform-style: preserve-3d;
-  transform: perspective(1000px);
-  animation: autoRun 20s linear infinite;
+  cursor: grab;
+  transition: transform 0.1s linear;
+  animation: autoRun 40s linear infinite;
+}
+
+.banner .slider:active {
+  cursor: grabbing;
 }
 
 @keyframes autoRun {
@@ -507,7 +512,7 @@ a:hover {
 
 .banner .slider .item {
   position: absolute;
-  inset: 0 0 0 0;
+  inset: 0;
   /* 3D effect */
   transform: 
     rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
