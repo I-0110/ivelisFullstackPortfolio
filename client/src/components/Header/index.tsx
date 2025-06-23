@@ -21,10 +21,10 @@ const Header = () => {
           <Link className="btn btn-lg m-2 bg-dark-headline text-dark-muted hover:opacity-90 transition" to="/projects">
             Ivelis' Projects
           </Link>
-          <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/me">
+          <Link className="btn btn-lg m-2 bg-dark-headline text-dark-muted hover:opacity-90 transition" to="/me">
             My Projects
           </Link>
-          <button className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" onClick={logout}>
+          <button className="btn btn-lg m-2 bg-dark-headline text-dark-muted hover:opacity-90 transition" onClick={logout}>
             Logout
           </button>
         </>
@@ -34,13 +34,13 @@ const Header = () => {
           <Link className='flex justify-center' to="/">
             <Video />
           </Link>
-          <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
+          <p className="m-0 bg-dark-headline text-dark-muted hover:opacity-90 transition" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
             Showcasting my work and projects.
           </p>
-          <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/projects">
+          <Link className="btn btn-lg m-2 bg-dark-headline text-dark-muted hover:opacity-90 transition" to="/projects">
             Projects
           </Link>
-          <Link className="btn btn-lg m-2 bg-light-headline text-light-muted dark:bg-dark-headline dark:text-dark-muted hover:opacity-90 transition" to="/signup">
+          <Link className="btn btn-lg m-2 bg-dark-headline text-dark-muted hover:opacity-90 transition" to="/signup">
             Hire Me
           </Link>
         </>
