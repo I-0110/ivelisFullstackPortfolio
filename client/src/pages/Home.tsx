@@ -71,15 +71,16 @@ const Home = () => {
                 <Link to="/contact" className='btn btn-lg m-2 bg-dark-headline text-dark-muted hover:opacity-90 transition'>Contact Me!</Link>
                 {/* Resume */}
                 <a
-                  href='https://docs.google.com/document/d/1OCky6jv6FhjHI1q5MDKZ5xHwvVFgzIIYu_NXd2HO6Yo/edit?usp=sharing'
-                  target="_blank"
-                  rel='noopener noreferrer'
-                  className='flex flex-col items-center mt-4'>
+                    href='https://docs.google.com/document/d/1OCky6jv6FhjHI1q5MDKZ5xHwvVFgzIIYu_NXd2HO6Yo/edit?usp=sharing'
+                    target="_blank"
+                    rel='noopener noreferrer'
+                    className='flex flex-col items-center text-white mt-4'>
+                    Get my resume here:
                     <img 
-                      src='resume.svg'
-                      alt='Download Resume'
-                      className='icon bg-white bounce'
-                    />
+                        src='resume.svg'
+                        alt='Download Resume'
+                        className='icon bg-white'
+                    /> 
                 </a>
               </section>
             </main>
