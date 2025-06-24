@@ -147,7 +147,6 @@ sup {
 img {
   border-style: none;
 }
-
 /* Forms
    ========================================================================== */
 /**
@@ -526,6 +525,29 @@ a:hover {
   border-radius: 8px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   backface-visibility: hidden; /* For smoother visuals */
+}
+
+/* Icons */
+.icon {
+  width: 55px;         
+  height: 55px;
+  display: inline-block;
+  object-fit: contain;
+}
+
+.bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
 }
 
 /* HEIGHT / WIDTH UTILS */
