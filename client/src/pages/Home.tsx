@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
@@ -15,6 +16,8 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <main className='grid grid-cols-1 lg:grid-cols-3 gap-6 p-6 max-w-screen-xl mx-auto'>
+              <h2 className='flex flex-col items-center'>Hello, my name is</h2>
+              <Header />
               {/* Project Display */}
               <section className='banner'>
                 <InteractiveCarousel />

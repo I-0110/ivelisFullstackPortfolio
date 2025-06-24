@@ -41,7 +41,7 @@ const Nav = () => {
         >
         <Link className="m-2 text-white" to="/">Home</Link>
         <Link className="m-2 text-white" to="/about">About</Link>
-        <Link className="m-2 text-white" to="/about">Resume PDF</Link>
+        <Link className="m-2 text-white" to="/home">Resume PDF</Link>
 
         {Auth.loggedIn() ? (
             <>
