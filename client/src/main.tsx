@@ -5,7 +5,7 @@ import App from './App.jsx';
 import Home from './pages/Home';
 import Profile from './pages/User.js';
 import Signup from './pages/Signup';
-import Login from './pages/Login';
+import Contact from './pages/Contact';
 import Error from './pages/Error';
 
 const router = createBrowserRouter([
@@ -18,8 +18,8 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />
       }, {
-        path: '/login',
-        element: <Login />
+        path: '/contact',
+        element: <Contact />
       }, {
         path: '/signup',
         element: <Signup />
@@ -27,8 +27,8 @@ const router = createBrowserRouter([
         path: '/user/:userId',
         element: <Profile />
       }, {
-        path: '/me',
-        element: <Profile />
+        path: '/Home',
+        element: <Home />
       }
     ]
   },

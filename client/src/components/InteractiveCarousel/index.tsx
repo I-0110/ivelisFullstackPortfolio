@@ -75,9 +75,9 @@ const InteractiveCarousel: React.FC = () => {
 
   return (
     <div className='banner'>
-        <h2 className="absolute top-1/3 left-1/3 -translate-x-0 -translate-y-0 z-0 text-3xl sm:text-4xl font-bold text-white drop-shadow-lg pointer-events-none">
+        <h1 className="absolute top-1/3 left-1/3 -translate-x-0 -translate-y-0 z-0 text-3xl sm:text-4xl font-bold text-white drop-shadow-lg pointer-events-none">
             My Projects
-        </h2>
+        </h1>
         <div
             className="slider"
             style={{
