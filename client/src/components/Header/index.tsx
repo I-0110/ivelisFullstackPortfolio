@@ -6,7 +6,6 @@ const Header = () => {
     <header className="flex flex-row justify-center">
       <div className="text-center">
         <>
-          <h3>Hello, my name is</h3>
           <Link to="/">
             <Video />
           </Link>

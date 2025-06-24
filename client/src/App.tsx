@@ -9,8 +9,6 @@ import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
 
 import Nav from './components/Navbar';
-import Toggle from './components/Toggle';
-import Header from './components/Header';
 import Footer from './components/Footer';
 
 const httpLink = createHttpLink({
@@ -40,8 +38,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Nav />
-      <Header />
-      <Toggle />
         <Outlet />
       <Footer />
     </ApolloProvider>
