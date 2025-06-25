@@ -21,7 +21,6 @@ const Home = () => {
               {/* Project Display */}
               <section className='banner'>
                 <InteractiveCarousel />
-                <h2 className=''>Projects</h2>
               </section>
               <br />
               <div className='grid grid-cols-3 gap-6 items-center'>
