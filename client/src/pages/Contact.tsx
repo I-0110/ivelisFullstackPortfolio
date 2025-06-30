@@ -32,41 +32,29 @@ const Contact: React.FC = () => {
     };
 
     return (
-        <main>
-            <section id="contact" className="w-full max-w-md mx-auto bg-gradient-to-tl from-[#ffffff] to-gray-300 dark:from-[#03161e] dark:to-gray-700 text-light-text dark:text-dark-text p-6 rounded shadow-md transition-all duration-300">
-                <div className='flex flex-col items-center space-y-6 mt-10'>
-                    <h1 className="text-3xl font-bold">Let's Work Together!</h1>
-                    <p className="text-light-100 mt-2">
+        <main className="flex flex-col items-center justify-center text-center min-h-screen px-4 space-y-8">
+            <section id="contact" className="mt-5 w-[55%] p-6 rounded-lg shadow-lg transition-all duration-300">
+                <div className='bg-gradient-to-tl from-[#ffffff] to-gray-200 dark:from-[#03161e] dark:to-gray-200 text-light-text dark:text-dark-text p-6 rounded shadow-md transition-all duration-300'>
+                    <h1 className="text-xl font-semibold mb-4 text-light-text dark:text-dark-text-100 p-2">Let's Work Together!</h1>
+                    <p className="block text-light-100 mt-2 text-center text-sm sm:text-base max-w-xs sm:max-w-md mx-auto transition-all duration-500 ease-in-out">
                         Have a project in mind or just want to connect?
                     </p>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        {/* Honey Pot where bot will fill if email is not good -- no guarantee of perfect email verification */}
-                        {/* <input
-                            type='text'
-                            name='_honey'
-                            className='flex flex-none'
-                        />
-                        {/* reCAPTCHA */}
-                        {/* <input 
-                            type='hidden'
-                            name='_captcha'
-                            value='true'
-                        /> */}
-                        {/* User's form */}
-                        <input name="name" placeholder="Your Name" required className="input" />
-                        <input  name="email" placeholder="Your Email" required type="email" className="input" />
+                    <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input name="name" placeholder="Your Name" required className="btn btn-md m-2 bg-white text-light-text dark:bg-gray-700 dark:text-dark-text hover:opacity-90 transition" />
+                        <input  name="email" placeholder="Your Email" required type="email" className="mb-1 btn btn-md m-2 bg-white text-light-text dark:bg-gray-700 dark:text-dark-text hover:opacity-90 transition" />
                         <textarea
                         name="message"
                         placeholder="Tell me about your project. Please describe as much as possible!"
                         required
-                        className="input"
+                        rows={6}
+                        className="mb-1 btn btn-lg m-2 bg-white text-light-text dark:bg-gray-700 dark:text-dark-text hover:opacity-90 transition"
                         />
 
                         <button
                         type="submit"
-                        disabled={formState === 'submitting'}>
-                        {formState === 'submitting' ? 'Sending...' : 'Sent'}
+                        disabled={formState === 'submitting'} className='mb-1 btn btn-lg m-2 bg-white text-light-text dark:bg-gray-700 dark:text-dark-text hover:opacity-90 transition'>
+                        {formState === 'submitting' ? 'Sending...' : 'Send'}
                         </button>
 
                     {formState === 'success' && (
