@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useRef } from 'react';
 import Header from '../components/Header';
 
 import { useQuery } from '@apollo/client';
@@ -7,6 +8,8 @@ import InteractiveCarousel from '../components/InteractiveCarousel';
 
 const Home = () => {
   const { loading } = useQuery(QUERY_USERS);
+
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
     <main>
@@ -17,9 +20,9 @@ const Home = () => {
           ) : (
             <main className='grid grid-cols-1 lg:grid-cols-3 gap-6 p-6 max-w-screen-xl mx-auto'>
               <h2 className='flex flex-col items-center'>Hello, my name is</h2>
-              <Header />
+              <Header scrollRef={scrollRef} />
               {/* Project Display */}
-              <section className='banner'>
+              <section ref={scrollRef} className='banner'>
                 <InteractiveCarousel />
               </section>
               <br />

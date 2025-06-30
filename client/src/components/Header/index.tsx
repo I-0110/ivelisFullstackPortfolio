@@ -1,14 +1,23 @@
 import { Link } from 'react-router-dom';
+import { RefObject } from 'react';
 import Video from '../../components/BgVideo';
 
-const Header = () => {
+type HeaderProps = {
+  scrollRef: RefObject<HTMLDivElement>;
+}
+
+const Header = ({ scrollRef }: HeaderProps) => {
+  const handleVideoEnd = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="flex flex-row justify-center">
       <div className="text-center">
         <>
-          <Link to="/">
-            <Video />
-          </Link>
+          <Video onEnded={handleVideoEnd} />
           <p className="m-0 bg-dark-headline text-dark-muted hover:opacity-90 transition" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
             Showcasting my work and projects.
           </p>
