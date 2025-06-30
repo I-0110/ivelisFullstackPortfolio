@@ -15,7 +15,7 @@ const images = [
     { src: "/ivelisHTML-CSS.png", alt: "ivelisHTML-CSS", link: 'https://i-0110.github.io/IvelisPortfolio/'},
   ];
 
-const InteractiveCarousel: React.FC = ({ onScroll }: CarouselEnds) => {
+const InteractiveCarousel: React.FC<CarouselEnds> = ({ onScroll }) => {
     const [rotationY, setRotationY] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
 
