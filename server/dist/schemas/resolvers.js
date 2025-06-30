@@ -1,4 +1,7 @@
 import { User } from '../models/index.js';
+import { ContactSubmission } from '../models/ContactSubmission.js';
+import crypto from 'crypto';
+import { sendConfirmationEmail, sendToOwner } from '../utils/sendEmail.js';
 import { signToken, AuthenticationError } from '../utils/auth.js';
 const resolvers = {
     Query: {
@@ -19,6 +22,22 @@ const resolvers = {
         },
     },
     Mutation: {
+        async submitContactForm(_, { name, email, message }) {
+            const token = crypto.randomBytes(20).toString('hex');
+            await ContactSubmission.create({ name, email, message, token, confirmed: false });
+            await sendConfirmationEmail(email, name, token);
+            return 'Confirmation email sent. Please check your inbox.';
+        },
+        async confirmContactSubmission(_, { token }) {
+            const submission = await ContactSubmission.findOne({ token });
+            if (!submission || submission.confirmed) {
+                throw new Error('Invalid or expired token');
+            }
+            submission.confirmed = true;
+            await submission.save();
+            await sendToOwner(submission);
+            return 'Your message has been confirmed and sent.';
+        },
         addUser: async (_parent, { input }) => {
             // Only allow admin to create another admin
             const isAdminEmail = input.email === process.env.ADMIN_EMAIL;

@@ -25,6 +25,9 @@ const typeDefs = `
   }
 
   type Mutation {
+    submitContactForm(name: String!, email: String!, message: String!): String!
+    confirmContactSubmission(token: String!): String!
+
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
 
