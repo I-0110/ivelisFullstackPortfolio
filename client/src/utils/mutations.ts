@@ -1,5 +1,17 @@
 import { gql } from '@apollo/client';
 
+export const SUBMIT_CONTACT_FORM = gql`
+  mutation SubmitContactForm($name: String!, $email: String!, $message: String!) {
+    submitContactForm(name: $name, email: $email, message: $message)
+  }
+`;
+
+export const CONFIRM_CONTACT_SUBMISSION = gql`
+  mutation ConfirmContactSubmission($token: String!) {
+  confirmContactSubmission(token: $token)
+  }
+`;
+
 export const ADD_USER = gql`
   mutation addUser($input: UserInput!) {
     addUser(input: $input) {
