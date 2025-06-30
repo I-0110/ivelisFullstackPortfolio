@@ -11,6 +11,12 @@ const Home = () => {
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const aboutRef = useRef<HTMLDivElement>(null);
+
+  const scrollToAbout = () => {
+    aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <main>
       <div className="flex-row justify-center">
@@ -23,12 +29,12 @@ const Home = () => {
               <Header scrollRef={scrollRef} />
               {/* Project Display */}
               <section ref={scrollRef} className='banner'>
-                <InteractiveCarousel />
+                <InteractiveCarousel onScroll={scrollToAbout} />
               </section>
               <br />
               <div className='grid grid-cols-3 gap-6 items-center'>
                 {/* Left-Short: About Me Section */}
-                <section className='flex flex-col justify-center space-y-4'>
+                <section ref={aboutRef} className='flex flex-col justify-center space-y-4'>
                   <h2 className='text-2xl font-bold'>About Ivelis</h2>
                   <p className='text-gray-100'>
                     I'm a full-stack developer passionate about building web apps with clean code and powerful user experiences.

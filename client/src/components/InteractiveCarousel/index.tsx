@@ -1,6 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 
+// Handling autoscroll
+type CarouselEnds = {
+  onScroll?: () => void;
+}
+
 const images = [
+    // { src: "/ivelisPortfolio.png", alt: "ivelisFullstack", link:'https://ivelisbecker.onrender.com/'},
     { src: "/musicDiary.png", alt: "musicDiary", link: 'https://musicdiary.onrender.com/'},
     { src: "/Munchies.png", alt: "Munchies", link: 'https://munchies-wzp9.onrender.com/'},
     { src: "/theFarm.png", alt: "Farm Management", link: 'https://farm-manager-h9l8.onrender.com/' },
@@ -9,7 +15,7 @@ const images = [
     { src: "/ivelisHTML-CSS.png", alt: "ivelisHTML-CSS", link: 'https://i-0110.github.io/IvelisPortfolio/'},
   ];
 
-const InteractiveCarousel: React.FC = () => {
+const InteractiveCarousel: React.FC = ({ onScroll }: CarouselEnds) => {
     const [rotationY, setRotationY] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
 
@@ -75,6 +81,11 @@ const InteractiveCarousel: React.FC = () => {
 
   return (
     <div className='banner'>
+        <button
+          onClick={onScroll}
+          className='animate-bounce btn btn-lg m-2 bg-dark-headline text-dark-muted hover:opacity-90 transition'
+          aria-label='Scroll to About Section'
+        >↓</button>
         <h1 className="absolute top-1/3 left-1/3 -translate-x-0 -translate-y-0 z-0 text-3xl sm:text-4xl font-bold text-white drop-shadow-lg pointer-events-none">
             My Projects
         </h1>
