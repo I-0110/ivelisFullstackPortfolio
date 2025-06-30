@@ -12,7 +12,7 @@ const Header = () => {
           <p className="m-0 bg-dark-headline text-dark-muted hover:opacity-90 transition" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
             Showcasting my work and projects.
           </p>
-          <Link className="btn btn-lg m-2 bg-dark-headline text-dark-muted hover:opacity-90 transition" to="/Home">
+          <Link className="btn btn-lg m-2 bg-dark-headline text-dark-muted hover:opacity-90 transition" to="/projects">
             Projects
           </Link>
           <Link className="btn btn-lg m-2 bg-dark-headline text-dark-muted hover:opacity-90 transition" to="/contact">
