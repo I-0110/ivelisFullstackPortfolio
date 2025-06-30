@@ -21,7 +21,8 @@
     "express": "^4.19.2",
     "graphql": "^16.9.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^8.4.3"
+    "mongoose": "^8.4.3",
+    "nodemailer": "^6.4.17"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
