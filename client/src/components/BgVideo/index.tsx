@@ -1,7 +1,11 @@
 import Auth from '../../utils/auth';
 // import { type MouseEvent} from 'react';
 
-function Video() {
+type VideoEnds = {
+    onEnded?: () => void;
+}
+
+function Video({ onEnded }: VideoEnds) {
     let username = "";
 
         if (Auth.loggedIn()) {
@@ -12,7 +16,13 @@ function Video() {
 
     return (
         <div className="video-body video-section mt-[-10px]">
-            <video src="/bgDark-white.mp4" loop autoPlay muted></video>
+            <video 
+            src="/bgDark-white.mp4" 
+            // loop 
+            autoPlay 
+            muted
+            onEnded={onEnded}
+            />
             <div className="video-copy">
                 <h1>{Auth.loggedIn() ? username : "IVELIS BECKER"}</h1>
             </div>
