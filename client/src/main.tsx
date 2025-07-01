@@ -6,7 +6,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Resume from './pages/Resume';
 import Projects from './pages/Projects';
-import Contact from './pages/Contact.js';
+import Contact from './pages/Contact';
+import Confirm from './pages/Confirm';
 import Error from './pages/Error';
 const router = createBrowserRouter([
   {
@@ -29,6 +30,9 @@ const router = createBrowserRouter([
       }, {
         path: '/contact',
         element: <Contact />
+      }, {
+        path: '/confirm/:token',
+        element: <Confirm />
       }
     ]
   },

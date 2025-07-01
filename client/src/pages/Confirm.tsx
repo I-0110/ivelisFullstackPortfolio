@@ -1,21 +1,21 @@
-// client/src/pages/Confirm.tsx
 import { useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { CONFIRM_CONTACT_SUBMISSION } from '../utils/mutations';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Confirm = () => {
-  const [searchParams] = useSearchParams();
-  const [confirmContactSubmission] = useMutation(CONFIRM_CONTACT_SUBMISSION);
+  const { token } = useParams();
+  const [confirmContactSubmission, { data, loading, error }] = useMutation(CONFIRM_CONTACT_SUBMISSION);
 
   useEffect(() => {
-    const token = searchParams.get('token');
     if (token) {
       confirmContactSubmission({ variables: { token } });
     }
-  }, []);
+  }, [token]);
 
-  return <p>🔒 Verifying your message...</p>;
+  if (loading) return <p>🔒 Verifying your message...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  return <p>{data ? 'Email confirmed! Thanks for your message.' : 'Waiting for confirmation...'}</p>;
 };
 
 export default Confirm;
