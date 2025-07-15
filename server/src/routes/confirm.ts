@@ -43,4 +43,10 @@ router.get('/confirm', async (req: Request, res: Response) => {
     }
 });
 
+router.get('/debug/tokens', async (_req, res) => {
+    const tokens = await Token.find();
+    console.log('DEBUG tokens:', tokens);
+    return res.json(tokens);
+});
+
 export default router;
