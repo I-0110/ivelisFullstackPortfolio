@@ -33,7 +33,7 @@ router.get('/confirm', async (req: Request, res: Response) => {
         res.status(200).json({ message: 'Submission confirmed and email sent' });
     } catch (err) {
         console.error(`Error confirming submission:`, err);
-        res.status(500).json({ message: `Internal server error` });
+        return res.status(500).json({ message: `Internal server error` });
     }
 });
 
