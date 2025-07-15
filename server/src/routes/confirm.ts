@@ -30,7 +30,7 @@ router.get('/confirm', async (req: Request, res: Response) => {
 
         await Token.deleteOne({ _id: foundToken._id });
 
-        return res.status(200).json({ message: 'Submission confirmed and email sent' });
+        return res.redirect('https://ivelisbecker.onrender.com/confirmed');
     } catch (err) {
         console.error(`Error confirming submission:`, err);
         return res.status(500).json({ message: `Internal server error` });
