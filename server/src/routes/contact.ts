@@ -13,24 +13,32 @@ router.post('/contact', async (req, res) => {
         const submission = await new ContactSubmission({ name, email, message }).save();
 
         const confirmationToken = crypto.randomBytes(32).toString('hex');
-        console.log('Generate token:', confirmationToken);
-
-        await new Token({
-            token: confirmationToken,
-            submissionId: submission._id,
-        }).save();
+        console.log('Generated token:', confirmationToken);
 
         const savedToken = await new Token({ 
             token: confirmationToken, 
             submissionId: submission._id }).save();
         console.log('🟢 Saved Token:', savedToken);
+
+        try {
+            const result = await savedToken.save();
+            console.log('Token successfully saved:', result);
+        } catch (err) {
+            console.error('Error saving token:', err);
+            return res.status(500).json({ message: 'Failed to save token' });
+        }
+
+        await new Token({
+            token: confirmationToken,
+            submissionId: submission._id,
+        }).save();
         
         await sendConfirmationEmail(email, name, confirmationToken);
 
-        res.status(200).json({ message: 'Confirmation email sent!' });
+        return res.status(200).json({ message: 'Confirmation email sent!' });
     } catch (err) {
         console.error('Error handling contact form:', err);
-        res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error' });
     }
 });
 
