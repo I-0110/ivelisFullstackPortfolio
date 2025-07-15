@@ -24,14 +24,30 @@ export const sendConfirmationEmail = async (to: string, name: string, token: str
 
 export const sendToOwner =  async (submission: any) => {
     try {
+        // Step 1: Send the original message from the client
         await transporter.sendMail({
             from: submission.email,
             to: 'ivelisbecker@gmail.com',
-            subject: `Ivelis, ${submission.name} solicito servicio en tu portfolio!`,
+            subject: `Mira, nuevo mensaje de ${submission.name}`,
             html: `
             <p><strong>Name:</strong> ${submission.name}</p>
             <p><strong>Email:</strong> ${submission.email}</p>
             <p><strong>Message:</strong><br>${submission.message}</p>
+            `,
+        });
+
+        // Step 2: Send a confirmation notice to you
+        await transporter.sendMail({
+            from: process.env.GMAIL_USER,
+            to: 'ivelisbecker@gmail.com',
+            subject: `✅ ${submission.name} confirmó su mensaje`,
+            html:`
+                <p>Este contacto ha confirmado su mensaje:<p>
+                <ul>
+                    <li><strong>Nombre:</strong> ${submission.name}</li>
+                    <li><strong>Email:</strong> ${submission.email}</li>
+                </ul>
+                <p>Responderle rapido.</p>
             `,
         });
     } catch(err) {
