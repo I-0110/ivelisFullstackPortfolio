@@ -8,6 +8,21 @@ const Confirm = () => {
   const [confirmContactSubmission, { data, loading, error }] = useMutation(CONFIRM_CONTACT_SUBMISSION);
 
   useEffect(() => {
+    const token = new URLSearchParams(window.location.search).get('token');
+    fetch(`/api/confirm?token=${token}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Invalid token! status: ${response.status}`);
+        } 
+        return response.json();
+      })
+      .then(token => {
+        console.log(token);
+      })
+      .catch(error => {
+        console.error(`Fetch error:`, error);
+      });
+    
     if (token) {
       confirmContactSubmission({ variables: { token } });
     }

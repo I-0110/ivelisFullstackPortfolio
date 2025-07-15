@@ -9,4 +9,5 @@ const ContactSubmissionSchema = new mongoose.Schema({
     createAt: { type: Date, default: Date.now },
 });
 
-export const ContactSubmission = mongoose.model('ContactSubmission', ContactSubmissionSchema );
+const ContactSubmission = mongoose.model('ContactSubmission', ContactSubmissionSchema);
+export default ContactSubmission;

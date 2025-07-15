@@ -8,6 +8,8 @@ import { ApolloServer } from '@apollo/server';// Note: Import from @apollo/serve
 import { expressMiddleware } from '@apollo/server/express4';
 import { typeDefs, resolvers } from './schemas/index.js';
 import { authenticateToken } from './utils/auth.js';
+import contactRoutes from './routes/contact.js';
+import confirmRoutes from './routes/confirm.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -26,6 +28,9 @@ const startApolloServer = async () => {
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
+
+  app.use('/api', contactRoutes);
+  app.use('/api', confirmRoutes);
 
   app.use('/graphql', expressMiddleware(server as any,
     {
