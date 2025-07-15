@@ -20,8 +20,10 @@ router.post('/contact', async (req, res) => {
             submissionId: submission._id,
         }).save();
 
-        const tokenDoc = await new Token({ token: confirmationToken, submissionId: submission._id }).save();
-        console.log('Saved token doc:', tokenDoc);
+        const savedToken = await new Token({ 
+            token: confirmationToken, 
+            submissionId: submission._id }).save();
+        console.log('🟢 Saved Token:', savedToken);
         
         await sendConfirmationEmail(email, name, confirmationToken);
 

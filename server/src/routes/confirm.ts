@@ -19,7 +19,8 @@ router.get('/confirm', async (req: Request, res: Response) => {
         console.log(`All tokens in DB:`, allTokens);
 
         const foundToken = await Token.findOne({ token });
-
+        console.log('🟡 Looking for token:', token);
+        
         if (!foundToken) {
             return res.status(400).json({ message: `Invalid or expired token` });
         }
