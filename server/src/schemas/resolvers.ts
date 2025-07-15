@@ -1,5 +1,5 @@
 import { User } from '../models/index.js';
-import { ContactSubmission } from '../models/ContactSubmission.js';
+import ContactSubmission from "../models/ContactSubmission.js"
 import crypto from 'crypto';
 import { sendConfirmationEmail, sendToOwner } from '../utils/sendEmail.js';
 
