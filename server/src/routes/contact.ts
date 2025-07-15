@@ -11,6 +11,7 @@ router.post('/contact', async (req, res) => {
 
     try {
         const submission = await new ContactSubmission({ name, email, message }).save();
+        console.log('📨 Submission saved with ID:', submission._id);
 
         const confirmationToken = crypto.randomBytes(32).toString('hex');
         console.log('Generated token:', confirmationToken);
