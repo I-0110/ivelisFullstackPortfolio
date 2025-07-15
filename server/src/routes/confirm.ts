@@ -6,6 +6,9 @@ import ContactSubmission from '../models/ContactSubmission.js';
 
 const router = express.Router();
 
+const tokens = await Token.find();
+console.log(`All tokens in DB:`, tokens);
+
 router.get('/confirm', async (req: Request, res: Response) => {
     const { token } = req.query;
 
@@ -35,6 +38,8 @@ router.get('/confirm', async (req: Request, res: Response) => {
         console.error(`Error confirming submission:`, err);
         return res.status(500).json({ message: `Internal server error` });
     }
+    
+    console.log(`Query token:`, token);
 });
 
 export default router;

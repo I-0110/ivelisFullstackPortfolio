@@ -14,7 +14,7 @@ const TokenSchema = new Schema<IToken>({
     createdAt: {
         type: Date,
         default: Date.now,
-        expires: 900, // 15 minutes in seconds
+        expires: 86400, // 24 hours in seconds
     },
 });
 

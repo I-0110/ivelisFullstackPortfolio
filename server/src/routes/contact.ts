@@ -13,6 +13,7 @@ router.post('/contact', async (req, res) => {
         const submission = await new ContactSubmission({ name, email, message }).save();
 
         const confirmationToken = crypto.randomBytes(32).toString('hex');
+        console.log('Generate token:', confirmationToken);
 
         await new Token({
             token: confirmationToken,
