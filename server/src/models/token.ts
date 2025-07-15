@@ -1,15 +1,14 @@
-import mongoose, { Schema, Document, Types } from "mongoose";
+import mongoose from "mongoose";
 
-export interface IToken extends Document {
-    token: string;
-    submissionId: Types.ObjectId;
-    createdAt: Date;
-}
-
-const TokenSchema = new Schema<IToken>({
+const TokenSchema = new mongoose.Schema({
     token: {
         type: String, 
         required: true,
+    },
+    submissionId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ContactSubmission',
+        required: true
     },
     createdAt: {
         type: Date,
@@ -18,5 +17,5 @@ const TokenSchema = new Schema<IToken>({
     },
 });
 
-const Token = mongoose.model<IToken>('Token', TokenSchema);
+const Token = mongoose.model('Token', TokenSchema);
 export default Token;

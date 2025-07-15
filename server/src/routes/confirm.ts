@@ -10,14 +10,14 @@ router.get('/confirm', async (req: Request, res: Response) => {
     const { token } = req.query;
     console.log(`Query token:`, token);
 
-    const allTokens = await Token.find();
-    console.log(`All tokens in DB:`, allTokens);
-
     if (!token || typeof token !== 'string') {
         return res.status(400).json({ message: `Missing or invalid token` });
     }
 
     try {
+        const allTokens = await Token.find();
+        console.log(`All tokens in DB:`, allTokens);
+
         const foundToken = await Token.findOne({ token });
 
         if (!foundToken) {
@@ -29,6 +29,8 @@ router.get('/confirm', async (req: Request, res: Response) => {
         if (!submission) {
             return res.status(404).json({ message: `Submission not found` });
         }
+
+        console.log('Sending email to owner about submission:', submission);
 
         await sendToOwner(submission);
 

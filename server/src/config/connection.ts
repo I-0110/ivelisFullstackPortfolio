@@ -4,6 +4,7 @@ dotenv.config();
 import mongoose from 'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI || '';
+console.log('Connected to MongoDB:', process.env.MONGO_URI);
 
 const db = async (): Promise<typeof mongoose.connection> => {
   try {
