@@ -44,9 +44,14 @@ router.get('/confirm', async (req: Request, res: Response) => {
 });
 
 router.get('/debug/tokens', async (_req, res) => {
-    const tokens = await Token.find();
-    console.log('DEBUG tokens:', tokens);
-    return res.json(tokens);
+    try {
+        const tokens = await Token.find();
+        console.log('DEBUG tokens:', tokens);
+        return res.json(tokens);
+    } catch (err) {
+        console.error('Error fetching tokens:', err);
+        return res.status(500).json({ message: 'Failed to fetch tokens' });
+    }
 });
 
 export default router;
