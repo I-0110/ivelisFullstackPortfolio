@@ -7,6 +7,7 @@ type CarouselEnds = {
 
 const images = [
     // { src: "/ivelisPortfolio.png", alt: "ivelisFullstack", link:'https://ivelisbecker.onrender.com/'},
+    { src: "/SteakMePage.png", alt: "Steak Me!", link: 'https://steakme-theta.vercel.app/'},
     { src: "/musicDiary.png", alt: "musicDiary", link: 'https://musicdiary.onrender.com/'},
     { src: "/Munchies.png", alt: "Munchies", link: 'https://munchies-wzp9.onrender.com/'},
     { src: "/theFarm.png", alt: "Farm Management", link: 'https://farm-manager-h9l8.onrender.com/' },
